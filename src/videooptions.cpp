@@ -1,5 +1,6 @@
 #include <vector>
 #include <sstream>
+#include <algorithm>
 
 #include <SDL/SDL.h>
 
@@ -11,6 +12,7 @@
 
 #include "videooptions.h"
 #include "main.h"
+
 
 using namespace std;
 using namespace gcn;

@@ -12,6 +12,15 @@
 #include "main.h"
 #include "sdl_driver.h"
 
+class QuitAction : public MenuAction
+{
+  Main &main;
+
+public:
+  QuitAction(Main &newMain) : main(newMain) { }
+  void invoke();
+};
+
 MenuManager::MenuManager(Main &newMain)
   : main(newMain)
 {
@@ -25,7 +34,7 @@ MenuManager::MenuManager(Main &newMain)
   m->addLink("singleplayer", Menu::SINGLEPLAYER);
   m->addLink("multiplayer", Menu::MULTIPLAYER);
   m->addLink("options", Menu::OPTIONS);
-  m->addAction("quit", new QuitAction(main));
+  m->addAction("quit", static_cast<MenuAction*>(new QuitAction(main)));
   menuSystem->addMenu(Menu::MAIN, m);
 
   m = new Menu(Menu::MAIN, "singleplayer");

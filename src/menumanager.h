@@ -14,17 +14,7 @@ class VideoOptions;
 class GameOptions;
 
 class MenuSystem;
-
-/**
- * MenuManager forms the facade for interacting with the game's menus.
- * 
- * It speaks to MenuSystem and builds up the menus and their menu entries. However
- * it does not touch any of the guichan internal.
- *
- * This is done to keep the guichan integration low and give the menu
- * construction a dedicated place that is not polluted with low-level stuff.
- *
- */
+class MenuAction;
 class MenuManager
 {
   Main &main;
@@ -51,14 +41,6 @@ class MenuManager
 
     bool update();
 
-    /** Indicate that input sensing should be finished.
-     * 
-     * If a new input has been determined and the operation should
-     * end as succeeded the argument's value is <code>true</code>.
-     * 
-     * If the operation should end as cancelled the argument's value
-     * is <code>false</code>.
-     * */
     void senseFinished(bool);
 
     GameOptions &getGameOptions() const { return *gameOptions; };
@@ -66,15 +48,6 @@ class MenuManager
     VideoOptions &getVideoOptions() const { return *videoOptions; };
 };
 
-class QuitAction : public MenuAction
-{
-  Main &main;
-
-  public:
-    QuitAction(Main &newMain)
-      : main(newMain) { }
-
-    void invoke();
-};
+class QuitAction;
 
 #endif
